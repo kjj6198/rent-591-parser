@@ -13,9 +13,15 @@ var House = require('./models/House');
 
 app.get('/search', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
-  const q = House.find().limit(200).exec((err, houses) => {
-    res.json({ houses: houses });
-  });
+  if (req.query.limit) {
+    const q = House.find().limit(+limit).exec((err, houses) => {
+      res.json({ houses: houses });
+    });
+  } else {
+    const q = House.find().sort({ createdAt: -1 }).limit(200).exec((err, houses) => {
+      res.json({ houses: houses });
+    });
+  }
 });
 
 app.listen(process.env.PORT || 3000, () => {

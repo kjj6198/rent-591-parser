@@ -6,7 +6,10 @@ var schema = mongoose.Schema({
   details: [String],
   houseIntro: String,
   houseDetail: [String],
-  price: String
+  price: String,
+  photos: String,
+  url: String,
+  createdAt: Date
 });
 
 schema.methods.getAllInfo = function() {
@@ -17,6 +20,7 @@ schema.methods.getAllInfo = function() {
     details: this.details,
     houseIntro: this.houseIntro,
     houseDetail: this.houseDetail,
+
   };
 };
 

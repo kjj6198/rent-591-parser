@@ -62,6 +62,7 @@ HouseParser.prototype.getAllInfo = function() {
     details: getDetails(this.$),
     houseIntro: getHouseIntro(this.$),
     houseDetail: getHouseDetail(this.$),
+    url: this.url,
   };
 };
 

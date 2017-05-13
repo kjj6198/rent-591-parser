@@ -44,7 +44,10 @@ function searchHouse(url, currentPage) {
                 price: houseInfo.price,
                 details: houseInfo.details,
                 houseIntro: houseInfo.houseIntro,
-                houseDetail: houseInfo.houseIntro,
+                houseDetail: houseInfo.houseDetail,
+                photos: houseInfo.photos,
+                url: houseInfo.url,
+                createdAt: Date.now(),
               }).save();
             } else {
               console.log('already in database skip...');
@@ -59,4 +62,4 @@ function searchHouse(url, currentPage) {
 }
 
 // [TODO] add search result to database.
-searchHouse('https://rent.591.com.tw/new/?kind=0&region=1&section=7,5,3,4,1&rentprice=9000,13500&area=7,12', 1)
+searchHouse('https://rent.591.com.tw/new/?kind=0&region=1&section=3,5,6,7,1&rentprice=8000,13500&area=6,12', 1)
