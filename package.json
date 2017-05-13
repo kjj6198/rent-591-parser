@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "cheerio": "^0.22.0",
-    "request": "^2.81.0"
+    "pg": "^6.1.5",
+    "request": "^2.81.0",
+    "underscore": "^1.8.3"
   }
 }

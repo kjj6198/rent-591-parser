@@ -1,6 +1,9 @@
 var cheerio = require('cheerio');
 var request = require('request');
 var HouseParser = require('./parser.js');
+var pg = require('pg');
+
+var connect = 'postgres://localhost/rentinfo';
 
 // function sleep(ms) {
 //   return new Promise(resolve => setTimeout(resolve, ms));
@@ -14,7 +17,21 @@ var HouseParser = require('./parser.js');
 
 // demo();
 
+pg.connect(connectionString, onConnect);
+
+function onConnect(err, client, done) {
+  //Err - This means something went wrong connecting to the database.
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  }
+
+  //For now let's end client
+  client.end();
+}
+
 function searchHouse(url, currentPage) {
+  console.log('parseing house page... 目前頁數為' + currentPage);
   request(url, (err, res, body) => {
     var $ = cheerio.load(body);
     var totalNum = $('.pageNum-form').data('total');
@@ -24,10 +41,10 @@ function searchHouse(url, currentPage) {
       $('#content > .listInfo').each((i, elm) => {
         const url = 'https:' + $(elm).find('a').attr('href').trim();
         sleep(4000);
-        request(url, (err, res, houseBody) => {
-          var houseParser = new HouseParser(houseBody, url);
-          sleep(4000);
-        });
+        // request(url, (err, res, houseBody) => {
+          // var houseParser = new HouseParser(houseBody, url);
+          // sleep(4000);
+        // });
         sleep(4000);
       });
 
