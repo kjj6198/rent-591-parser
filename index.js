@@ -14,7 +14,7 @@ var House = require('./models/House');
 app.get('/search', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   if (req.query.limit) {
-    const q = House.find().limit(+limit).exec((err, houses) => {
+    const q = House.find().limit(+req.query.limit).exec((err, houses) => {
       res.json({ houses: houses });
     });
   } else {
